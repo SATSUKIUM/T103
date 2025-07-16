@@ -1,0 +1,260 @@
+.L read_binary_sato3.C+ 
+read_binary_sato3("../data/data1.dat")
+.q
+TBrowser aaa
+.q
+TFile *_file0 = TFile::Open("../data/data1.dat.root")
+TBrowser aaa
+.q
+.L waveana.C
+waveana data1("../data/data1.dat.root")
+data1.PlotADCSum()
+data1.PlotWaves()
+.q
+.L waveana.C
+waveana data1("../data/data1.dat.root")
+data1.PlotADCSum()
+.q
+.L waveana.C
+waveana d1("../data/data1.dat.root")
+d1.PlotADCSum()
+d1.fChain->Draw("adcsum[0][0]")
+q.
+.q
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.q
+.x Sr90.C 
+.q
+.x Sr90.C 
+.x Sr90.C 
+.q
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.q
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.q
+.x Sr90.C 
+.q
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.q
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x Sr90.C 
+.x read_binary_sato3.C 
+.L read_binary_sato3.C 
+.q
+.L read_binary_sato3.C 
+read_binary_sato3("../data/test001.dat")
+.q
+.L waveana.C
+waveana a("../data/test001.dat.root")
+a.PlotADCSum()
+a.PlotWaves(0,1,20)
+.q
+.L binary2tree_sato3.C 
+.q
+.L binary2tree_sato3.C 
+.q
+.L binary2tree_sato3.C 
+.q
+.L binary2tree_sato3.C 
+.q
+.L binary2tree_sato3.C 
+binary2tree_sato3()
+.q
+.L waveana.C
+waveana a("../data/test001.dat.root")
+a.fChain->GetEntry(1)
+a.fChain->Show()
+.q
+.L binary2tree_sato3.C 
+.q
+.L binary2tree_sato3.C 
+.q
+.L binary2tree_sato3.C 
+binary2tree_sato3()
+.q
+.L waveana.C
+waveana a("../data/test001.dat.root")
+a.fChain->GetEntry(1)
+a.fChain->Show()
+.q
+.L DRS4Ana.C
+.q
+.L DRS4Ana.C
+.L DRS4Ana.C
+.q
+.L DRS4Ana.C
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+.q
+.L binary2tree_sato3.C 
+binary2tree_sato3("../data/test001.dat")
+.q
+.L DRS4Ana.C
+binary2tree_sato3("../data/test001.dat")
+DRS4Ana a("../data/test001.dat.root")
+a.PlotADCSum()
+.q
+binary2tree_sato3("../data/test001.dat")
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotADCSum()
+a.PlotWaves(0,1,20)
+.q
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotWaves(0,1,20)
+a.PlotADCSum()
+a.fTime[0][0][0]
+a.fTime[0][0][1]
+a.fTime[0][0][2]
+a.fChain->Show()
+a.fChain->GetEntry(1)
+a.fChain->Show()
+a.fTime[0][0][1]
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotWaves(0,1,20)
+a.fChain->GetEntry(1)
+a.fTime[0][0][1]
+a.fTime[0][0][1023]
+a.fTime[0][0][1024]
+a.fTime[0][0][1023]
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotWaves(0,1,20)
+.q
+.L binary2tree_sato3.C 
+binary2tree_sato3("../data/data1.dat")
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/data1.dat.root")
+a.PlotWaves(0,1,20)
+a.SetWaveRangeY(0.1.2)
+a.SetWaveRangeY(0,1.2)
+a.PlotWaves(0,1,20)
+a.PlotADCSum()
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.GetPedestal(0,1,0,50)
+a.GetPedestal(0,2,0,50)
+a.GetPedestal(0,2,0,50,0.001)
+a.GetPedestal(0,2,0,50,0.001)
+a.GetPedestal(0,3,0,50,0.001)
+a.GetPedestal(0,4,0,50,0.001)
+a.PlotWaves(0,1,3)
+a.GetPedestal(0,4,0,100,0.001)
+a.GetPedestal(0,4,0,150,0.001)
+a.GetPedestal(0,4,0,250,0.001)
+a.GetPedestal(0,4,0,350,0.001)
+a.GetPedestal(0,4,0,450,0.001)
+a.GetPedestal(0,4,0,550,0.001)
+a.GetPedestal(0,3,0,550,0.001)
+a.GetPedestal(0,3,0,450,0.001)
+a.GetPedestal(0,3,0,430,0.001)
+a.GetPedestal(0,3,0,450,0.001)
+a.GetPedestal(0,3,0,460,0.001)
+a.GetPedestal(0,3,0,300,0.001)
+a.GetPedestal(0,3,0,200,0.001)
+a.GetPedestal(0,3,0,100,0.001)
+a.PlotADCSum()
+a.h_adcSum->GetXaxis->Get
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.GetMinVoltage()
+a.GetMinVoltage()
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.GetMinVoltage()
+.q
+.L DRS4Ana.C
+.q
+.L DRS4Ana.C
+.q
+.L DRS4Ana.C
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotChargeIntegral()
+a.GetEntry(1)
+a.GetPedestal()
+a.GetPedestal()
+a.GetPedestal(0)
+a.GetPedestal(0,-0.05)
+a.GetPedestal(0,0.05)
+.q
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotChargeIntegral()
+a.PlotChargeIntegral()
+a.PlotChargeIntegral()
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotChargeIntegral()
+a.PlotChargeIntegral(0,0,0,100)
+a.PlotChargeIntegral(0,0,0,30)
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotChargeIntegral()
+a.PlotChargeIntegral()
+a.PlotChargeIntegral(0,0,0,30)
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/test001.dat.root")
+a.PlotWaves(0,1,20)
+.q
+.L DRS4Ana.C
+DRS4Ana a("../data/data1.dat.root")
+a.SetChargeIntegralTimeRange(0,30)
+a.PlotChargeIntegral()
+a.PlotChargeIntegral(0,0,0,1000)
+a.PlotChargeIntegral(0,0,0,100)
+a.PlotChargeIntegral(0,0,0,1)
+a.SetChargeIntegralTimeRange(0,1000)
+a.PlotChargeIntegral(0,0,0,100)
+a.SetChargeIntegralTimeRange(5000,1000)
+a.SetChargeIntegralTimeRange(500,1000)
+a.PlotChargeIntegral(0,0,0,100)
+a.SetPedestalTimeRange(0,200)
+a.PlotChargeIntegral(0,0,0,100)
+.q
