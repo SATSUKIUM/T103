@@ -83,16 +83,25 @@ void T103Ana::CheckNumComponents()
     nentries = 50;
 
     for(Int_t Entry=0; Entry<nentries; Entry++){
-            std::cout << "ltdc_utof_l[0] size : " << ltdc_utof_l[0].size() << std::endl;
-        std::cout << "ltdc_utof_r[0] size : " << ltdc_utof_r[0].size() << std::endl;
+        fChain->GetEntry(Entry);
+        printf("\nEntry %d:\n", Entry);
+        std::cout << "\tltdc_utof_l[0] size : " << ltdc_utof_l[0].size() << std::endl;
+        std::cout << "\tltdc_utof_r[0] size : " << ltdc_utof_r[0].size() << std::endl;
 
-        std::cout << "ltdc_utof_l size : " << ltdc_utof_l.size() << std::endl;
-        std::cout << "ltdc_utof_r size : " << ltdc_utof_r.size() << std::endl;
+        std::cout << "\tltdc_utof_l size : " << ltdc_utof_l->size() << std::endl;
+        std::cout << "\tltdc_utof_r size : " << ltdc_utof_r->size() << std::endl;
 
-        for(Int_t i=0; i<ltdc_utof_l[0].size(); i++){
-            std::cout << "Component " << i << " : "
-                    << "ltdc_utof_l[0][" << i << "] = " << ltdc_utof_l[0][i] << ", "
-                    << "ltdc_utof_r[0][" << i << "] = " << ltdc_utof_r[0][i] << std::endl;
+        printf("L\n");
+        for(Int_t i=0; i<ltdc_utof_l->size(); i++){
+            for(Int_t j=0; j<ltdc_utof_l[i].size(); j++){
+                std::cout << Form("\tltdc_utof_l[%d][%d] = %f\n", i, j, (*ltdc_utof_l)[i][j]);
+            }
+        }
+        printf("R\n");
+        for(Int_t i=0; i<ltdc_utof_r->size(); i++){
+            for(Int_t j=0; j<ltdc_utof_r[i].size(); j++){
+                std::cout << Form("\tltdc_utof_r[%d][%d] = %f\n", i, j, (*ltdc_utof_r)[i][j]);
+            }
         }
 
     }
