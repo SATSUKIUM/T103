@@ -81,7 +81,6 @@ void T103Ana::CheckNumComponents()
     std::cout << "Number of entries in the tree: " << nentries << std::endl;
 
     nentries = 50;
-
     for(Int_t Entry=0; Entry<nentries; Entry++){
         fChain->GetEntry(Entry);
         printf("\nEntry %d:\n", Entry);
@@ -103,6 +102,33 @@ void T103Ana::CheckNumComponents()
                 std::cout << Form("\tltdc_utof_r[%d][%d] = %f\n", i, j, (*ltdc_utof_r)[i][j]);
             }
         }
-
     }
+}
+
+Double_t T103Ana::CheckNumComponents2()
+{
+    fChain->SetBranchStatus("*", 0); // 全てのブランチを無効化
+    fChain->SetBranchStatus("ltdc_utof_l", 1); //
+    Long64_t nentries = fChain->GetEntries();
+    std::cout << "Number of entries in the tree: " << nentries << std::endl;
+
+    if(fH1General != NULL){
+        delete fH1General;
+    }
+
+    fH1General = new TH1F("fH1General", "number of components in a vector", 10, 0, 10);
+    fH1General->SetXTitle("Number of components");
+    fH1General->SetYTitle("Counts");
+
+    Int_t numComponents, counter = 0;
+    for(Int_t Entry=0; Entry<nentries; Entry++){
+        fChain->GetEntry(Entry);
+
+        numComponents = ltdc_utof_l[0].size();
+        fH1General->Fill(numComponents);
+        counter++;
+    }
+    fH1General->Draw();
+    return counter;
+
 }

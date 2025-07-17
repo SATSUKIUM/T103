@@ -121,8 +121,11 @@ public:
     Int_t IfFile_duplication(TString folderPath, TString &fileName);
     virtual void PlotTOF(Int_t nbins = 100, Double_t xmin = -140.0, Double_t xmax = -120.0);
     virtual void CheckNumComponents();
+    virtual Double_t CheckNumComponents2();
 
+    // 表示用
     TH1F *fH1TOF = NULL;
+    TH1F *fH1General = NULL;
 
 private:
     TString fRootFile; // Root file name
