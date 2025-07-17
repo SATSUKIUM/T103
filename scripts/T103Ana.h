@@ -121,6 +121,7 @@ public:
     Int_t IfFile_duplication(TString folderPath, TString &fileName);
     virtual void PlotTOF(Int_t nbins = 100, Double_t xmin = -140.0, Double_t xmax = -120.0);
     virtual void CheckNumComponents();
+    virtual void CheckNumComponents_general();
     virtual Double_t CheckNumComponents2();
 
     // 表示用

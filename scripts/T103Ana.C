@@ -105,10 +105,48 @@ void T103Ana::CheckNumComponents()
     }
 }
 
+void T103Ana::CheckNumComponents_general()
+{
+    fChain->SetBranchStatus("*", 0); // 全てのブランチを無効化
+
+    fChain->SetBranchStatus("ltdc_t0_l", 1);
+    fChain->SetBranchStatus("ltdc_t0_r", 1); // ltdc_t0_lとltdc_t0_rのみ有効化
+
+    Long64_t nentries = fChain->GetEntries();
+    std::cout << "Number of entries in the tree: " << nentries << std::endl;
+
+    nentries = 50;
+    for(Int_t Entry=0; Entry<nentries; Entry++){
+        fChain->GetEntry(Entry);
+        printf("\nEntry %d:\n", Entry);
+
+
+        std::cout << "\tinner vector size : " << ltdc_t0_l[0].size() << std::endl;
+        std::cout << "\tinner vector size : " << ltdc_t0_r[0].size() << std::endl;
+
+        std::cout << "\touter vector size : " << ltdc_t0_l->size() << std::endl;
+        std::cout << "\touter vector size : " << ltdc_t0_r->size() << std::endl;
+
+        printf("L\n");
+        for(Int_t i=0; i<ltdc_t0_l->size(); i++){
+            for(Int_t j=0; j<(*ltdc_t0_l)[i].size(); j++){
+                std::cout << Form("\tltdc_t0_l[%d][%d] = %f\n", i, j, (*ltdc_t0_l)[i][j]);
+            }
+        }
+        printf("R\n");
+        for(Int_t i=0; i<ltdc_t0_r->size(); i++){
+            for(Int_t j=0; j<(*ltdc_t0_r)[i].size(); j++){
+                std::cout << Form("\tltdc_t0_r[%d][%d] = %f\n", i, j, (*ltdc_t0_r)[i][j]);
+            }
+        }
+    }
+}
+
 Double_t T103Ana::CheckNumComponents2()
 {
     fChain->SetBranchStatus("*", 0); // 全てのブランチを無効化
-    fChain->SetBranchStatus("ltdc_utof_l", 1); //
+    fChain->SetBranchStatus("ltdc_utof_l", 1); 
+    fChain->SetBranchStatus("ltdc_utof_r", 1); // ltdc_utof_lとltdc_utof_rのみ有効化
     Long64_t nentries = fChain->GetEntries();
     std::cout << "Number of entries in the tree: " << nentries << std::endl;
 
@@ -124,7 +162,7 @@ Double_t T103Ana::CheckNumComponents2()
     for(Int_t Entry=0; Entry<nentries; Entry++){
         fChain->GetEntry(Entry);
 
-        numComponents = ltdc_utof_l[0].size();
+        numComponents = ltdc_utof_r[0].size();
         fH1General->Fill(numComponents);
         counter++;
     }
