@@ -78,26 +78,22 @@ void T103Ana::PlotTOF(Int_t nbins = 100, Double_t xmin = -140.0, Double_t xmax =
 void T103Ana::CheckNumComponents()
 {
     Long64_t nentries = fChain->GetEntries();
-    fChain->GetEntry(0);
+    std::cout << "Number of entries in the tree: " << nentries << std::endl;
 
-    std::cout << "ltdc_utof_l[0] size : " << ltdc_utof_l[0].size() << std::endl;
-    std::cout << "ltdc_utof_r[0] size : " << ltdc_utof_r[0].size() << std::endl;
+    nentries = 50;
 
-    std::cout << "ltdc_utof_l size : " << ltdc_utof_l.size() << std::endl;
-    std::cout << "ltdc_utof_r size : " << ltdc_utof_r.size() << std::endl;
+    for(Int_t Entry=0; Entry<nentries; Entry++){
+            std::cout << "ltdc_utof_l[0] size : " << ltdc_utof_l[0].size() << std::endl;
+        std::cout << "ltdc_utof_r[0] size : " << ltdc_utof_r[0].size() << std::endl;
 
-    for(Int_t i=0; i<ltdc_utof_l[0].size(); i++){
-        std::cout << "Component " << i << " : "
-                  << "ltdc_utof_l[0][" << i << "] = " << ltdc_utof_l[0][i] << ", "
-                  << "ltdc_utof_r[0][" << i << "] = " << ltdc_utof_r[0][i] << std::endl;
+        std::cout << "ltdc_utof_l size : " << ltdc_utof_l.size() << std::endl;
+        std::cout << "ltdc_utof_r size : " << ltdc_utof_r.size() << std::endl;
+
+        for(Int_t i=0; i<ltdc_utof_l[0].size(); i++){
+            std::cout << "Component " << i << " : "
+                    << "ltdc_utof_l[0][" << i << "] = " << ltdc_utof_l[0][i] << ", "
+                    << "ltdc_utof_r[0][" << i << "] = " << ltdc_utof_r[0][i] << std::endl;
+        }
+
     }
-
-    // // コンポーネント数をチェック
-    // Int_t numComponents = id_utof_l.size();
-    // std::cout << "Number of components in UTOF left: " << numComponents << std::endl;
-    // std::cout << "Number of components in UTOF right: " << id_utof_r.size() << std::endl;
-
-    // // 他のコンポーネントも同様にチェック
-    // std::cout << "Number of components in BHT left: " << id_bht_l.size() << std::endl;
-    // std::cout << "Number of components in BHT right: " << id_bht_r.size() << std::endl;
 }
