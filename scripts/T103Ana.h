@@ -17,96 +17,96 @@ public:
 
     //ブランチの変数
 
-    std::vector<int> id_utof_l;
-    std::vector<int> id_utof_r;
-    std::vector<std::vector<double>> tot_utof_l;
-    std::vector<std::vector<double>> tot_utof_r;
-    std::vector<std::vector<double>> ltdc_utof_l;
-    std::vector<std::vector<double>> ltdc_utof_r;
+    std::vector<int>* id_utof_l = nullptr;
+    std::vector<int>* id_utof_r = nullptr;
+    std::vector<std::vector<double>>* tot_utof_l = nullptr;
+    std::vector<std::vector<double>>* tot_utof_r = nullptr;
+    std::vector<std::vector<double>>* ltdc_utof_l = nullptr;
+    std::vector<std::vector<double>>* ltdc_utof_r = nullptr;
 
-    std::vector<int> id_dtof_l;
-    std::vector<int> id_dtof_r;
-    std::vector<std::vector<double>> tot_dtof_l;
-    std::vector<std::vector<double>> tot_dtof_r;
-    std::vector<std::vector<double>> ltdc_dtof_l;
-    std::vector<std::vector<double>> ltdc_dtof_r;
+    std::vector<int>* id_dtof_l = nullptr;
+    std::vector<int>* id_dtof_r = nullptr;
+    std::vector<std::vector<double>>* tot_dtof_l = nullptr;
+    std::vector<std::vector<double>>* tot_dtof_r = nullptr;
+    std::vector<std::vector<double>>* ltdc_dtof_l = nullptr;
+    std::vector<std::vector<double>>* ltdc_dtof_r = nullptr;
 
-    std::vector<int> id_ltof_l;
-    std::vector<int> id_ltof_r;
-    std::vector<std::vector<double>> tot_ltof_l;
-    std::vector<std::vector<double>> tot_ltof_r;
-    std::vector<std::vector<double>> ltdc_ltof_l;
-    std::vector<std::vector<double>> ltdc_ltof_r;
+    std::vector<int>* id_ltof_l = nullptr;
+    std::vector<int>* id_ltof_r = nullptr;
+    std::vector<std::vector<double>>* tot_ltof_l = nullptr;
+    std::vector<std::vector<double>>* tot_ltof_r = nullptr;
+    std::vector<std::vector<double>>* ltdc_ltof_l = nullptr;
+    std::vector<std::vector<double>>* ltdc_ltof_r = nullptr;
 
-    std::vector<int> id_t0_l;
-    std::vector<int> id_t0_r;
-    std::vector<std::vector<double>> tot_t0_l;
-    std::vector<std::vector<double>> tot_t0_r;
-    std::vector<std::vector<double>> ltdc_t0_l;
-    std::vector<std::vector<double>> ltdc_t0_r;
+    std::vector<int>* id_t0_l = nullptr;
+    std::vector<int>* id_t0_r = nullptr;
+    std::vector<std::vector<double>>* tot_t0_l = nullptr;
+    std::vector<std::vector<double>>* tot_t0_r = nullptr;
+    std::vector<std::vector<double>>* ltdc_t0_l = nullptr;
+    std::vector<std::vector<double>>* ltdc_t0_r = nullptr;
 
     // t0rはよくわからない
-    std::vector<int> id_t0r_l;
-    std::vector<int> id_t0r_r;
-    std::vector<std::vector<double>> tot_t0r_l;
-    std::vector<std::vector<double>> tot_t0r_r;
-    std::vector<std::vector<double>> ltdc_t0r_l;
-    std::vector<std::vector<double>> ltdc_t0r_r;
+    std::vector<int>* id_t0r_l = nullptr;
+    std::vector<int>* id_t0r_r = nullptr;
+    std::vector<std::vector<double>>* tot_t0r_l = nullptr;
+    std::vector<std::vector<double>>* tot_t0r_r = nullptr;
+    std::vector<std::vector<double>>* ltdc_t0r_l = nullptr;
+    std::vector<std::vector<double>>* ltdc_t0r_r = nullptr;
 
     // brefを飛ばす。
 
-    std::vector<int> id_t1_l;
-    std::vector<int> id_t1_r;
-    std::vector<std::vector<double>> tot_t1_l;
-    std::vector<std::vector<double>> tot_t1_r;
-    std::vector<std::vector<double>> ltdc_t1_l;
-    std::vector<std::vector<double>> ltdc_t1_r;
+    std::vector<int>* id_t1_l = nullptr;
+    std::vector<int>* id_t1_r = nullptr;
+    std::vector<std::vector<double>>* tot_t1_l = nullptr;
+    std::vector<std::vector<double>>* tot_t1_r = nullptr;
+    std::vector<std::vector<double>>* ltdc_t1_l = nullptr;
+    std::vector<std::vector<double>>* ltdc_t1_r = nullptr;
 
     // bhtはよくわからない
-    std::vector<int> id_bht_l;
-    std::vector<int> id_bht_r;
-    std::vector<std::vector<double>> tot_bht_l;
-    std::vector<std::vector<double>> tot_bht_r;
-    std::vector<std::vector<double>> ltdc_bht_l;
-    std::vector<std::vector<double>> ltdc_bht_r;
+    std::vector<int>* id_bht_l = nullptr;
+    std::vector<int>* id_bht_r = nullptr;
+    std::vector<std::vector<double>>* tot_bht_l = nullptr;
+    std::vector<std::vector<double>>* tot_bht_r = nullptr;
+    std::vector<std::vector<double>>* ltdc_bht_l = nullptr;
+    std::vector<std::vector<double>>* ltdc_bht_r = nullptr;
 
-    std::vector<int> id_bft_l1;
-    std::vector<int> id_bft_l2;
-    std::vector<int> id_bft_l3;
-    std::vector<int> id_bft_l4;
-    std::vector<int> id_bft_l5;
-    std::vector<int> id_bft_l6;
-    std::vector<std::vector<double>> tot_bft_l1;
-    std::vector<std::vector<double>> tot_bft_l2;
-    std::vector<std::vector<double>> tot_bft_l3;
-    std::vector<std::vector<double>> tot_bft_l4;
-    std::vector<std::vector<double>> tot_bft_l5;
-    std::vector<std::vector<double>> tot_bft_l6;
-    std::vector<std::vector<double>> ltdc_bft_l1;
-    std::vector<std::vector<double>> ltdc_bft_l2;
-    std::vector<std::vector<double>> ltdc_bft_l3;
-    std::vector<std::vector<double>> ltdc_bft_l4;
-    std::vector<std::vector<double>> ltdc_bft_l5;
-    std::vector<std::vector<double>> ltdc_bft_l6;
+    std::vector<int>* id_bft_l1 = nullptr;
+    std::vector<int>* id_bft_l2 = nullptr;
+    std::vector<int>* id_bft_l3 = nullptr;
+    std::vector<int>* id_bft_l4 = nullptr;
+    std::vector<int>* id_bft_l5 = nullptr;
+    std::vector<int>* id_bft_l6 = nullptr;
+    std::vector<std::vector<double>>* tot_bft_l1 = nullptr;
+    std::vector<std::vector<double>>* tot_bft_l2 = nullptr;
+    std::vector<std::vector<double>>* tot_bft_l3 = nullptr;
+    std::vector<std::vector<double>>* tot_bft_l4 = nullptr;
+    std::vector<std::vector<double>>* tot_bft_l5 = nullptr;
+    std::vector<std::vector<double>>* tot_bft_l6 = nullptr;
+    std::vector<std::vector<double>>* ltdc_bft_l1 = nullptr;
+    std::vector<std::vector<double>>* ltdc_bft_l2 = nullptr;
+    std::vector<std::vector<double>>* ltdc_bft_l3 = nullptr;
+    std::vector<std::vector<double>>* ltdc_bft_l4 = nullptr;
+    std::vector<std::vector<double>>* ltdc_bft_l5 = nullptr;
+    std::vector<std::vector<double>>* ltdc_bft_l6 = nullptr;
 
-    std::vector<int> id_sft_l1;
-    std::vector<int> id_sft_l2;
-    std::vector<int> id_sft_l3;
-    std::vector<int> id_sft_l4;
-    std::vector<int> id_sft_l5;
-    std::vector<int> id_sft_l6;
-    std::vector<std::vector<double>> tot_sft_l1;
-    std::vector<std::vector<double>> tot_sft_l2;
-    std::vector<std::vector<double>> tot_sft_l3;
-    std::vector<std::vector<double>> tot_sft_l4;
-    std::vector<std::vector<double>> tot_sft_l5;
-    std::vector<std::vector<double>> tot_sft_l6;
-    std::vector<std::vector<double>> ltdc_sft_l1;
-    std::vector<std::vector<double>> ltdc_sft_l2;
-    std::vector<std::vector<double>> ltdc_sft_l3;
-    std::vector<std::vector<double>> ltdc_sft_l4;
-    std::vector<std::vector<double>> ltdc_sft_l5;
-    std::vector<std::vector<double>> ltdc_sft_l6;
+    std::vector<int>* id_sft_l1 = nullptr;
+    std::vector<int>* id_sft_l2 = nullptr;
+    std::vector<int>* id_sft_l3 = nullptr;
+    std::vector<int>* id_sft_l4 = nullptr;
+    std::vector<int>* id_sft_l5 = nullptr;
+    std::vector<int>* id_sft_l6 = nullptr;
+    std::vector<std::vector<double>>* tot_sft_l1 = nullptr;
+    std::vector<std::vector<double>>* tot_sft_l2 = nullptr;
+    std::vector<std::vector<double>>* tot_sft_l3 = nullptr;
+    std::vector<std::vector<double>>* tot_sft_l4 = nullptr;
+    std::vector<std::vector<double>>* tot_sft_l5 = nullptr;
+    std::vector<std::vector<double>>* tot_sft_l6 = nullptr;
+    std::vector<std::vector<double>>* ltdc_sft_l1 = nullptr;
+    std::vector<std::vector<double>>* ltdc_sft_l2 = nullptr;
+    std::vector<std::vector<double>>* ltdc_sft_l3 = nullptr;
+    std::vector<std::vector<double>>* ltdc_sft_l4 = nullptr;
+    std::vector<std::vector<double>>* ltdc_sft_l5 = nullptr;
+    std::vector<std::vector<double>>* ltdc_sft_l6 = nullptr;
 
 
     T103Ana(const Char_t *fRootFile_par = "../test1181.root");
