@@ -1,22 +1,103 @@
 #define T103Ana_cxx
 #include "T103Ana.h"
-#include <TH2.h>
+
 #include <TStyle.h>
 #include <TCanvas.h>
 
-#include <TH1.h>
+#include <TSystem.h>
 
-#include <TH1.h>
+// C++の標準ライブラリ
+#include <iostream>
+#include <vector>
+#include <fstream>
+#include <filesystem>
 
-void T103Ana::PlotTOF()
+// 時刻情報
+#include <iomanip>
+#include <chrono>
+#include <ctime>
+
+// ヒストグラム関係
+#include <TH1.h>
+#include <TH2.h>
+
+// グラフ
+#include <TGraphErrors.h>
+#include <TLegend.h>
+
+// 見栄え関係
+#include <TPad.h>
+#include <TColor.h>
+
+TString T103Ana::Makedir_Date(){
+    //YYYYMMDDのフォルダを作る関数。呼び出せば勝手にYYYYMMDDのフォルダができる。
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    char date[9];
+    strftime(date, sizeof(date), "%Y%m%d", ltm);
+    TString folderPath = TString::Format("./figure/%s", date);
+
+    if(gSystem->AccessPathName(folderPath)){
+        if(gSystem->mkdir(folderPath, true) != 0){
+                std::cerr << "フォルダの作成に失敗しました: " << folderPath << std::endl;
+                return -1;
+        }
+    }
+    return (folderPath);
+}
+Int_t T103Ana::IfFile_duplication(TString folderPath, TString &fileName){
+    //例えば、"./figure/YYYYMMDD"というパスと、hoge.pdfを渡せば、そのディレクトリにhoge.pdfとhoge2.pdfが存在する場合に、渡した"hoge.pdf"を"hoge3.pdf"に変えてくれる関数
+    Int_t index =1;
+    Int_t lastDotPos = fileName.Last('.');
+    TString filename_buf_before_dot = fileName(0, lastDotPos);
+    TString filename_buf_after_dot = fileName(lastDotPos, fileName.Length());
+    TString filename_buf = fileName;
+    while(gSystem->AccessPathName(folderPath + '/' + filename_buf) == 0){
+        filename_buf = filename_buf_before_dot + TString::Format("%d", index) + filename_buf_after_dot;
+        index++;
+        std::cout << Form("\tfilename : %s exists, rename...", filename_buf.Data()) << std::endl;
+    }
+    fileName = filename_buf;
+    return index;
+}
+
+void T103Ana::PlotTOF(Int_t nbins = 100, Double_t xmin = -140.0, Double_t xmax = -120.0)
 {
+    // ツリーから直接Draw
     TCanvas *c1 = new TCanvas("c1", Form("TOF Plot %s", fRootFile.Data()), 800, 600);
     c1->Draw();
 
-    fH1TOF = new TH1F("fH1TOF", Form("TOF Distribution %s", fRootFile.Data()), 100, -140, -120);
+    fH1TOF = new TH1F("fH1TOF", Form("TOF Distribution %s", fRootFile.Data()), nbins, xmin, xmax);
     fH1TOF->SetXTitle("TOF [ns]");
     fH1TOF->SetYTitle("Counts");
 
     fChain->Draw("(ltdc_utof_l[0]+ltdc_utof_r[0])/2.0 - (ltdc_t1_l[0]+ltdc_t1_r[0])/2.0>>fH1TOF");
 
+}
+
+void T103Ana::CheckNumComponents()
+{
+    Long64_t nentries = fChain->GetEntries();
+    fChain->GetEntry(0);
+
+    std::cout << "ltdc_utof_l[0] size : " << ltdc_utof_l[0].size() << std::endl;
+    std::cout << "ltdc_utof_r[0] size : " << ltdc_utof_r[0].size() << std::endl;
+
+    std::cout << "ltdc_utof_l size : " << ltdc_utof_l.size() << std::endl;
+    std::cout << "ltdc_utof_r size : " << ltdc_utof_r.size() << std::endl;
+
+    for(Int_t i=0; i<ltdc_utof_l[0].size(); i++){
+        std::cout << "Component " << i << " : "
+                  << "ltdc_utof_l[0][" << i << "] = " << ltdc_utof_l[0][i] << ", "
+                  << "ltdc_utof_r[0][" << i << "] = " << ltdc_utof_r[0][i] << std::endl;
+    }
+
+    // // コンポーネント数をチェック
+    // Int_t numComponents = id_utof_l.size();
+    // std::cout << "Number of components in UTOF left: " << numComponents << std::endl;
+    // std::cout << "Number of components in UTOF right: " << id_utof_r.size() << std::endl;
+
+    // // 他のコンポーネントも同様にチェック
+    // std::cout << "Number of components in BHT left: " << id_bht_l.size() << std::endl;
+    // std::cout << "Number of components in BHT right: " << id_bht_r.size() << std::endl;
 }

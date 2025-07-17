@@ -116,7 +116,11 @@ public:
     virtual Bool_t Notify() { return kTRUE; } // Called when loading a new file
     virtual void Init(TTree *tree);
 
-    virtual void PlotTOF();
+    // ここから解析用の関数
+    TString Makedir_Date();
+    Int_t IfFile_duplication(TString folderPath, TString &fileName);
+    virtual void PlotTOF(Int_t nbins = 100, Double_t xmin = -140.0, Double_t xmax = -120.0);
+    virtual void CheckNumComponents();
 
     TH1F *fH1TOF = NULL;
 
