@@ -123,10 +123,14 @@ public:
     virtual void CheckNumComponents();
     virtual void CheckNumComponents_general();
     virtual Double_t CheckNumComponents2();
+    virtual Double_t T0_check();
+    virtual Double_t T0r_check();
+    virtual Double_t LTDC_check();
 
     // 表示用
     TH1F *fH1TOF = NULL;
     TH1F *fH1General = NULL;
+    TH2F *fH2General = NULL;
 
 private:
     TString fRootFile; // Root file name

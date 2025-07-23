@@ -84,11 +84,11 @@ void T103Ana::CheckNumComponents()
     for(Int_t Entry=0; Entry<nentries; Entry++){
         fChain->GetEntry(Entry);
         printf("\nEntry %d:\n", Entry);
-        std::cout << "\tltdc_utof_l[0] size : " << ltdc_utof_l[0].size() << std::endl;
-        std::cout << "\tltdc_utof_r[0] size : " << ltdc_utof_r[0].size() << std::endl;
+        std::cout << "\t(*ltdc_utof_l)[0] size : " << (*ltdc_utof_l)[0].size() << std::endl;
+        std::cout << "\t(*ltdc_utof_r)[0] size : " << (*ltdc_utof_r)[0].size() << std::endl;
 
-        std::cout << "\tltdc_utof_l size : " << ltdc_utof_l->size() << std::endl;
-        std::cout << "\tltdc_utof_r size : " << ltdc_utof_r->size() << std::endl;
+        std::cout << "\t(*ltdc_utof_l) size : " << (*ltdc_utof_l).size() << std::endl;
+        std::cout << "\t(*ltdc_utof_r) size : " << (*ltdc_utof_r).size() << std::endl;
 
         printf("L\n");
         for(Int_t i=0; i<ltdc_utof_l->size(); i++){
@@ -121,11 +121,11 @@ void T103Ana::CheckNumComponents_general()
         printf("\nEntry %d:\n", Entry);
 
 
-        std::cout << "\tinner vector size : " << ltdc_t0_l[0].size() << std::endl;
-        std::cout << "\tinner vector size : " << ltdc_t0_r[0].size() << std::endl;
+        std::cout << "\tinner vector size : " << (*ltdc_t0_l)[0].size() << std::endl;
+        std::cout << "\tinner vector size : " << (*ltdc_t0_r)[0].size() << std::endl;
 
-        std::cout << "\touter vector size : " << ltdc_t0_l->size() << std::endl;
-        std::cout << "\touter vector size : " << ltdc_t0_r->size() << std::endl;
+        std::cout << "\touter vector size : " << (*ltdc_t0_l).size() << std::endl;
+        std::cout << "\touter vector size : " << (*ltdc_t0_r).size() << std::endl;
 
         printf("L\n");
         for(Int_t i=0; i<ltdc_t0_l->size(); i++){
@@ -167,6 +167,135 @@ Double_t T103Ana::CheckNumComponents2()
         counter++;
     }
     fH1General->Draw();
+    return counter;
+
+}
+
+Double_t T103Ana::T0_check()
+{
+    fChain->SetBranchStatus("*", 0); // 全てのブランチを無効化
+
+    fChain->SetBranchStatus("ltdc_t0_l", 1);
+    fChain->SetBranchStatus("ltdc_t0_r", 1); // ltdc_t0_lとltdc_t0_rのみ有効化
+
+    Long64_t nentries = fChain->GetEntries();
+    std::cout << "Number of entries in the tree: " << nentries << std::endl;
+
+    fChain->GetEntry(0);
+    std::cout << "(*ltdc_t0_l).size() = " << (*ltdc_t0_l).size() << std::endl;
+    std::cout << "(*ltdc_t0_l[0]).size() = " << (*ltdc_t0_l)[0].size() << std::endl;
+
+    if(fH2General != NULL){
+        delete fH2General;
+    }
+    fH2General = new TH2F("fH2General", "distribution of T0", 100, 600, 1400, 8, 0, 7);
+    fH2General->SetXTitle("time [ns]");
+    fH2General->SetYTitle("channel");
+
+    Double_t tof_buf;
+    Double_t counter = 0;
+    for(Int_t Entry=0; Entry<nentries; Entry++){
+        fChain->GetEntry(Entry);
+        for(Int_t outer=0; outer<(*ltdc_t0_l).size(); outer++){
+            for(Int_t inner=0; inner<(*ltdc_t0_l)[outer].size(); inner++){
+            fH2General->Fill((*ltdc_t0_l)[outer][inner], outer);
+            if((*ltdc_t0_l)[outer].size() != 0){
+                std::cout << Form("Entry %d : ltdc_t0_l[%d][%d] = %f\n", Entry, outer, inner, (*ltdc_t0_l)[outer][inner]) << std::endl;
+            }
+            }
+        }
+        
+        counter++;
+    }
+    fH2General->Draw("colz");
+    gPad->SetLogz();
+    gPad->SetGrid();
+    return counter;
+
+}
+
+Double_t T103Ana::T0r_check()
+{
+    fChain->SetBranchStatus("*", 0); // 全てのブランチを無効化
+
+    fChain->SetBranchStatus("ltdc_t0r_l", 1);
+    fChain->SetBranchStatus("ltdc_t0r_r", 1); // ltdc_t0_lとltdc_t0_rのみ有効化
+
+    Long64_t nentries = fChain->GetEntries();
+    std::cout << "Number of entries in the tree: " << nentries << std::endl;
+
+    fChain->GetEntry(0);
+    std::cout << "(*ltdc_t0r_l).size() = " << (*ltdc_t0r_l).size() << std::endl;
+    std::cout << "(*ltdc_t0r_l[0]).size() = " << (*ltdc_t0r_l)[0].size() << std::endl;
+
+    if(fH2General != NULL){
+        delete fH2General;
+    }
+    fH2General = new TH2F("fH2General", "distribution of T0r", 100, 600, 1400, 8, 0, 7);
+    fH2General->SetXTitle("time [ns]");
+    fH2General->SetYTitle("channel");
+
+    Double_t tof_buf;
+    Double_t counter = 0;
+    for(Int_t Entry=0; Entry<nentries; Entry++){
+        fChain->GetEntry(Entry);
+        for(Int_t outer=0; outer<(*ltdc_t0r_l).size(); outer++){
+            for(Int_t inner=0; inner<(*ltdc_t0r_l)[outer].size(); inner++){
+            fH2General->Fill((*ltdc_t0r_l)[outer][inner], outer);
+            if((*ltdc_t0r_l)[outer].size() != 0){
+                std::cout << Form("Entry %d : ltdc_t0r_l[%d][%d] = %f\n", Entry, outer, inner, (*ltdc_t0r_l)[outer][inner]) << std::endl;
+            }
+            }
+        }
+        
+        counter++;
+    }
+    fH2General->Draw("colz");
+    gPad->SetLogz();
+    gPad->SetGrid();
+    return counter;
+
+}
+
+Double_t T103Ana::T0r_check()
+{
+    fChain->SetBranchStatus("*", 0); // 全てのブランチを無効化
+
+    fChain->SetBranchStatus("ltdc_t0r_l", 1);
+    fChain->SetBranchStatus("ltdc_t0r_r", 1); // ltdc_t0_lとltdc_t0_rのみ有効化
+
+    Long64_t nentries = fChain->GetEntries();
+    std::cout << "Number of entries in the tree: " << nentries << std::endl;
+
+    fChain->GetEntry(0);
+    std::cout << "(*ltdc_t0r_l).size() = " << (*ltdc_t0r_l).size() << std::endl;
+    std::cout << "(*ltdc_t0r_l[0]).size() = " << (*ltdc_t0r_l)[0].size() << std::endl;
+
+    if(fH2General != NULL){
+        delete fH2General;
+    }
+    fH2General = new TH2F("fH2General", "distribution of T0r", 100, 600, 1400, 8, 0, 7);
+    fH2General->SetXTitle("time [ns]");
+    fH2General->SetYTitle("channel");
+
+    Double_t tof_buf;
+    Double_t counter = 0;
+    for(Int_t Entry=0; Entry<nentries; Entry++){
+        fChain->GetEntry(Entry);
+        for(Int_t outer=0; outer<(*ltdc_t0r_l).size(); outer++){
+            for(Int_t inner=0; inner<(*ltdc_t0r_l)[outer].size(); inner++){
+            fH2General->Fill((*ltdc_t0r_l)[outer][inner], outer);
+            if((*ltdc_t0r_l)[outer].size() != 0){
+                std::cout << Form("Entry %d : ltdc_t0r_l[%d][%d] = %f\n", Entry, outer, inner, (*ltdc_t0r_l)[outer][inner]) << std::endl;
+            }
+            }
+        }
+        
+        counter++;
+    }
+    fH2General->Draw("colz");
+    gPad->SetLogz();
+    gPad->SetGrid();
     return counter;
 
 }
