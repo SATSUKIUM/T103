@@ -271,6 +271,10 @@ Double_t T103Ana::T0r_check()
     std::cout << "(*ltdc_t0r_l).size() = " << (*ltdc_t0r_l).size() << std::endl;
     std::cout << "(*ltdc_t0r_l[0]).size() = " << (*ltdc_t0r_l)[0].size() << std::endl;
 
+    // 下記は同じ意味？
+    std::cout << "ltdc_t0r_l->size() = " << ltdc_t0r_l->size() << std::endl;
+    std::cout << "ltdc_t0r_l[0].size() = " << ltdc_t0r_l[0].size() << std::endl;
+
     if(fH2General != NULL){
         delete fH2General;
     }
