@@ -31,6 +31,7 @@ void std_vector(){
     vec2d->push_back(std::vector<Double_t>{1.0, 2.0, 3.0});
     vec2d->push_back(std::vector<Double_t>{4.0, 5.0, 6.0});
     vec2d->push_back(std::vector<Double_t>{7.0, 8.0, 9.0});
+    vec2d->push_back(std::vector<Double_t>{10.0, 11.0, 12.0});
 
     std::cout << (*vec2d)[0][0] << std::endl;
 
@@ -40,4 +41,15 @@ void std_vector(){
 
     auto value = *((vec2d->begin()+0)->begin()+0);
     std::cout << value << std::endl;
+    printf("\n");
+
+    Int_t first_layer_size = vec2d->size();
+    std::cout << "size : " << first_layer_size << std::endl;
+    for(Int_t i=0; i<first_layer_size; i++){
+        Int_t second_layer_size = (vec2d->begin()+i)->size();
+        std::cout << "second layer size : " << second_layer_size << std::endl;
+        for(Int_t j=0; j<second_layer_size; j++){
+            std::cout << "component : " << *((vec2d->begin()+i)->begin()+j) << "\n";
+        }
+    }
 }
